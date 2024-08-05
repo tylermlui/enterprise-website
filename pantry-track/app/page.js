@@ -17,9 +17,6 @@ export default function Home() {
   const [imageSrc, setImageSrc] = useState("");
   const [src, setSrc] = useState(''); // initial src will be empty
 
-
-  const storageRef = ref(storage, 'images/my-image.jpg');
-
   const addItem = async (e) => {
     e.preventDefault();
     if (newItem.name !== '' && newItem.price !== '') {
@@ -98,16 +95,6 @@ export default function Home() {
     }
   }, [items]);
 
-  const uploadImage = (props) => {
-    const image = "/logo.png";
-
-    useEffect(() => {
-      const blob = new Blob([image], {type: 'image/png'})
-      const img = URL.createObjectURL(blob);
-
-      setSrc(img); // after component is mount, src will change
-    }, []);
-  }
   return (
     <main className="flex min-h-screen flex-col items-center justify-between sm:p-24 p-4">
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm">
@@ -219,8 +206,6 @@ export default function Home() {
             </div>
           )}
         </div>
-        <input type='file' onChange={uploadImage} />
-        <img src ={src}/>
       </div>
     </main>
   );
